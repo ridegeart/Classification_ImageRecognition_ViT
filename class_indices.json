@@ -1,0 +1,16 @@
+{
+    "0": "AS-RESIDUE-E",
+    "1": "CF DEFECT",
+    "2": "CF PS DEFORMATION",
+    "3": "CF REPAIR FAIL",
+    "4": "ESD",
+    "5": "FIBER",
+    "6": "GLASS BROKEN",
+    "7": "GLASS CULLET",
+    "8": "ITO-RESIDUE-T",
+    "9": "LIGHT METAL",
+    "10": "M1-ABNORMAL",
+    "11": "PI SPOT-WITH PAR",
+    "12": "POLYMER",
+    "13": "PV-HOLE-T"
+}
