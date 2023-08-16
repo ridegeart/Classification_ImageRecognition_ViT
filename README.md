@@ -6,8 +6,18 @@ The github form : [Github - WZMIAOMIAO] [2]
 - 下載權重檔:[路徑]
 
 ## Data Prepared
-- 訓練集(含驗證集)：一個類別對應一個文件夾。
-- 預測集 (Detect)：所有照片全部放在一個資料夾內。
+1. dataPickle_Transform.py : 原本資料建立meta資料表 ＆ train/test 資料集資訊。
+    - section-1 < meta >: coarse_label_names,fine_label_names.
+    - setction-2 train / test > create : filenames , coarse_labels, fine_labels ,third_labels
+    - section-3 < read meta dic for data transform index > & < train / test > create : filenames , coarse_labels, fine_labels ,third_labels
+    [資料夾說明]
+    dataPickle_Transform/preimages/train , dataPickle_Transform/preimage/test 的照片要放在 dataset/images。
+    dataPickle_Transform/picklefiles/meta,train,test 要放在 dataset/pickle_files。
+    會產生一個pickleTotal.csv彙整表。
+2. process_dataset.py : 建立train.csv / test.csv。
+3. level_dic.py : 建立 level_1 與 Level_2 與 level_3 階層字典。
+4. resize.py : 照片 resize 。
+    - Traintype = True
 
 ## Training 
 1. 使用train.py 進行訓練。
