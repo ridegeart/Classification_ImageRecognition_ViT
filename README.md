@@ -15,6 +15,9 @@ The github form : [Github - WZMIAOMIAO] [2]
     - --num_classes :更改自定義資料集的類別數(3層)。
     - --data-path 路徑:自己的訓練集路徑。
     - --weights 路徑:下載好的權重的存放位置。
+    - --train_csv 路徑
+    - --test_csv 路徑
+    - --metafile 路徑
 
 ## Predict (單張測試)
 1. 使用predict.py。
