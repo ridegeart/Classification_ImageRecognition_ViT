@@ -29,14 +29,14 @@ def main():
     img = data_transform(img)
     # expand batch dimension
     img = torch.unsqueeze(img, dim=0)
-    metafile = '/home/agx/AUO_FMA/FMA_transformer/dataset/pickle_files/meta'
+    metafile = './dataset/pickle_files/meta'
     '''data - loader'''
     coarse_labels,fine_labels,third_labels = read_meta(metafile)
 
     # create model
     model = create_model(weights="", freeze_layers=False,num_classes=[2,4,14], has_logits=False).to(device)
     # load model weights
-    model_weight_path = "./weights/A_finModel_F_H.pth"
+    model_weight_path = "./weights/B-2_fin_SF_H.pth"
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
     with torch.no_grad():
