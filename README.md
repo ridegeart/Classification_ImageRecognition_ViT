@@ -1,5 +1,5 @@
 ﻿# 3 Layer Classification
-Implementation of Vision Transformer in PyTorch based on paper [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale] [1] by Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... & Houlsby.
+Implementation of Vision Transformer in PyTorch based on paper [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale] [1] by Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... & Houlsby.  
 The github form : [Github - WZMIAOMIAO] [2]
 
 ## setting
@@ -18,6 +18,12 @@ The github form : [Github - WZMIAOMIAO] [2]
     - --train_csv 路徑
     - --test_csv 路徑
     - --metafile 路徑
+
+### Model
+1. A_1layer:單層
+2. A_F_H:三層/特徵獨立/Hierachical loss
+3. B-1_F_H:三層/特徵獨立/Hierachical loss
+4. B-2_SF_H:三層/特徵共享/Hierachical loss
 
 ## Predict (單張測試)
 1. 使用predict.py。
