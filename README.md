@@ -1,5 +1,5 @@
 ﻿# Single Layer Classification
-Implementation of Vision Transformer in PyTorch based on paper [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale] [1] by Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... & Houlsby.
+Implementation of Vision Transformer in PyTorch based on paper [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale] [1] by Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... & Houlsby.  
 The github form : [Github - WZMIAOMIAO] [2]
 
 ## setting
