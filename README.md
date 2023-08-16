@@ -20,9 +20,11 @@ The github form : [Github - WZMIAOMIAO] [2]
     - --metafile 路徑
 
 ### Model
-1. A_1layer:單層
-3. B-1_F_H (vit_model_B.py) : 三層/特徵獨立/Hierachical loss
-4. B-2_SF_H (vit_model.py) : 三層/特徵共享/Hierachical loss
+|代號 |python檔 |特徵 |Loss |框架 |
+|------|--------|--------|--------|--------|
+|A_1layer |參考main |--- |--- |常見分類 |
+|B-1_F_H |vit_model_B.py |獨立 |Hierachical loss |階層式分類 |
+|B-2_SF_H |vit_model.py |共享 |Hierachical loss |階層式分類 |
 
 ## Predict (單張測試)
 1. 使用predict.py。
