@@ -7,7 +7,7 @@ import torch
 from PIL import Image
 from torchvision import transforms
 import matplotlib.pyplot as plt
-
+from helper import read_meta
 from vit_model import vit_base_patch16_224_in21k as create_model
 
 
@@ -29,33 +29,51 @@ def main():
     img = data_transform(img)
     # expand batch dimension
     img = torch.unsqueeze(img, dim=0)
-
-    # read class_indict
-    json_path = './class_indices.json'
-    assert os.path.exists(json_path), "file: '{}' dose not exist.".format(json_path)
-
-    with open(json_path, "r") as f:
-        class_indict = json.load(f)
+    metafile = '/home/agx/AUO_FMA/FMA_transformer/dataset/pickle_files/meta'
+    '''data - loader'''
+    coarse_labels,fine_labels,third_labels = read_meta(metafile)
 
     # create model
-    model = create_model(weights="", freeze_layers=False,num_classes=14, has_logits=False).to(device)
+    model = create_model(weights="", freeze_layers=False,num_classes=[2,4,14], has_logits=False).to(device)
     # load model weights
-    model_weight_path = "./weights/bestmodel_SGD(0.1).pth"
+    model_weight_path = "./weights/A_finModel_F_H.pth"
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
     with torch.no_grad():
         # predict class
-        output = torch.squeeze(model(img.to(device))).cpu()
-        predict = torch.softmax(output, dim=0)
-        predict_cla = torch.argmax(predict).numpy()
+        superclass_pred,subclass_pred ,subtwoclass_pred = model(img.to(device))
+        superclass_pred = torch.squeeze(superclass_pred).cpu()
+        subclass_pred = torch.squeeze(subclass_pred).cpu()
+        subtwoclass_pred = torch.squeeze(subtwoclass_pred).cpu()
+        superclass_pred = torch.softmax(superclass_pred, dim=0)
+        superclass_pred_cla = torch.argmax(superclass_pred).numpy()
+        subclass_pred = torch.softmax(subclass_pred, dim=0)
+        subclass_pred_cla = torch.argmax(subclass_pred).numpy()
+        subtwoclass_pred = torch.softmax(subtwoclass_pred, dim=0)
+        subtwoclass_pred_cla = torch.argmax(subtwoclass_pred).numpy()
+    
+    print_super = "superclass: {}  prob: {:.3}".format(coarse_labels[superclass_pred_cla],
+                                                 superclass_pred[superclass_pred_cla].numpy())
+    
+    for i in range(len(superclass_pred)):
+        print("superclass: {:10}   prob: {:.3}".format(coarse_labels[i],
+                                                  superclass_pred[i].numpy()))
+    
+    print_sub = "subclass: {}  prob: {:.3}".format(fine_labels[subclass_pred_cla],
+                                                 subclass_pred[subclass_pred_cla].numpy())
+    
+    for i in range(len(subclass_pred)):
+        print("subclass: {:10}   prob: {:.3}".format(fine_labels[i],
+                                                  subclass_pred[i].numpy()))
+    
+    print_subtwo = "subTwoclass: {}  prob: {:.3}".format(third_labels[subtwoclass_pred_cla],
+                                                 subtwoclass_pred[subtwoclass_pred_cla].numpy())
+    
+    for i in range(len(subtwoclass_pred)):
+        print("subTwoclass: {:10}   prob: {:.3}".format(third_labels[i],
+                                                  subtwoclass_pred[i].numpy()))
 
-    print_res = "class: {}   prob: {:.3}".format(class_indict[str(predict_cla)],
-                                                 predict[predict_cla].numpy())
-    plt.title(print_res)
-    for i in range(len(predict)):
-        print("class: {:10}   prob: {:.3}".format(class_indict[str(i)],
-                                                  predict[i].numpy()))
-
+    plt.title(print_super+', '+print_sub+', '+print_subtwo)
     plt.show()
 
 

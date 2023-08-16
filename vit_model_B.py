@@ -231,8 +231,8 @@ class VisionTransformer(nn.Module):
         self.head3 = nn.Linear(self.num_features, num_classes[2]) if num_classes[2] > 0 else nn.Identity()
         
         self.softmax_reg1 = nn.Linear(num_classes[0], num_classes[0])
-        self.softmax_reg2 = nn.Linear(num_classes[0]+num_classes[1], num_classes[1])
-        self.softmax_reg3 = nn.Linear(num_classes[0]+num_classes[1]+num_classes[2], num_classes[2]) #add layer3
+        self.softmax_reg2 = nn.Linear(num_classes[1], num_classes[1])
+        self.softmax_reg3 = nn.Linear(num_classes[2], num_classes[2]) #add layer3
         self.head_dist = None
         if distilled:
             self.head_dist = nn.Linear(self.embed_dim, self.num_classes) if num_classes > 0 else nn.Identity()
@@ -274,8 +274,8 @@ class VisionTransformer(nn.Module):
                 return (x + x_dist) / 2
         else:
             level_1 = self.softmax_reg1(self.head1(x)) # 經過softxmax處理後的模型輸出（機率值）
-            level_2 = self.softmax_reg2(torch.cat((level_1, self.head2(x)), dim=1))
-            level_3 = self.softmax_reg3(torch.cat((level_1,level_2, self.head3(x)), dim=1))# add layer3
+            level_2 = self.softmax_reg2(self.head2(x))
+            level_3 = self.softmax_reg3(self.head3(x))# add layer3
 
         return level_1, level_2 ,level_3
 

@@ -177,3 +177,16 @@ def evaluate(model, data_loader, device, epoch):
                                                                                accu_num.item() / sample_num)
 
     return accu_loss.item() / (step + 1), accu_num.item() / sample_num
+
+def calculate_accuracy(predictions, labels):
+    '''Calculates the accuracy of the prediction.
+    '''
+
+    num_data = labels.size()[0]
+    predicted = torch.argmax(predictions, dim=1)
+
+    correct_pred = torch.sum(predicted == labels)
+
+    accuracy = correct_pred*(100/num_data)
+
+    return accuracy.item()
