@@ -35,14 +35,13 @@ The github form : [Github - WZMIAOMIAO] [2]
 2. 更改參數:
     - img_path :預測照片存放的路徑。
     - modelName :訓練好的權重檔路徑。
-    - (line14)呼叫模型時，
+    - (line45)呼叫模型時，
         - 不用凍結網路層(freeze_layers=False)。
         - num_classes設為自定義資料集的類別數。
 
 ## Data Training Detail
-- read_split_data：自動將訓練集分割成，訓練資料(8):驗證資料(2)。
+- 讀取train.csv/test.csv：將訓練集分割成，訓練資料(9):驗證資料(1)。
 - data_transform：自動將輸入圖片resize成224*224。
-- MyDataSet：自動生成class_indices(所有類別的dict)。
 - num_workers：輸入batch_size，讓電腦自動運算合適的數量。
 - create_model：Pretrained Weight 的帶入，
     1. 讀取權重(.pth檔)。
