@@ -21,7 +21,6 @@ The github form : [Github - WZMIAOMIAO] [2]
 
 ### Model
 1. A_1layer:單層
-2. A_F_H:三層/特徵獨立/Hierachical loss
 3. B-1_F_H:三層/特徵獨立/Hierachical loss
 4. B-2_SF_H:三層/特徵共享/Hierachical loss
 
