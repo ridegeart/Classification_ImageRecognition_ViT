@@ -3,6 +3,7 @@ Implementation of Vision Transformer in PyTorch based on paper [An Image is Wort
 The github form : [Github - WZMIAOMIAO] [2]
 
 ## setting
+- 資料夾:'./FMA_transformer'
 - 下載權重檔:[路徑]
 
 ## Training Data Prepared
