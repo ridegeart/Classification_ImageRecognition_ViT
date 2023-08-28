@@ -3,7 +3,7 @@ Implementation of Vision Transformer in PyTorch based on paper [An Image is Wort
 The github form : [Github - WZMIAOMIAO] [2]
 
 ## setting
-- 資料夾:'./Transformer_SingleLayer'
+- 資料夾:'./transformer/Deep_1'
 - 下載權重檔:[路徑]
 
 ## Data Prepared
