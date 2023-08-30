@@ -13,7 +13,7 @@ The github form : [Github - WZMIAOMIAO] [2]
     - section-3 < read meta dic for data transform index > & < train / test > create : filenames , coarse_labels, fine_labels ,third_labels
     [資料夾說明]
     dataPickle_Transform/preimages/train , dataPickle_Transform/preimage/test 的照片要放在 dataset/images。
-    dataPickle_Transform/picklefiles/meta,train,test 要放在 dataset/pickle_files。
+    dataPickle_Transform/picklefiles/meta,train,test 要放在 dataset/pickle_files。  
     會產生一個pickleTotal.csv彙整表。
 2. process_dataset.py : 建立train.csv / test.csv。
 3. level_dic.py : 建立 level_1 與 Level_2 與 level_3 階層字典。
@@ -21,8 +21,8 @@ The github form : [Github - WZMIAOMIAO] [2]
     - Traintype = True
 
 ## Training 
-1. 使用train.py 進行訓練。
-2. 更改參數:
+1. train.py：進行訓練。
+- 更改參數:
     - --num_classes :更改自定義資料集的類別數(3層)。
     - --data-path 路徑:自己的訓練集路徑。
     - --weights 路徑:下載好的權重的存放位置。
@@ -38,8 +38,8 @@ The github form : [Github - WZMIAOMIAO] [2]
 |B-2_SF_H |vit_model.py |共享 |Hierachical loss |階層式分類 |
 
 ## Predict (單張測試)
-1. 使用predict.py。
-2. 更改參數:
+1. predict.py。
+- 更改參數:
     - img_path :開啟照片檔案路徑。
     - model_weight_path :訓練好的權重檔路徑。
 
@@ -47,13 +47,17 @@ The github form : [Github - WZMIAOMIAO] [2]
 1. 預測集 (Detect)：所有照片全部放在一個資料夾內。
 
 ## Detect (多張預測)
-1. 使用detect.py 進行照片預測。
-2. 更改參數:
+1. detect.py：進行照片預測。
+- 更改參數:
     - img_path :預測照片存放的路徑。
     - modelName :訓練好的權重檔路徑。
     - (line45)呼叫模型時，
         - 不用凍結網路層(freeze_layers=False)。
         - num_classes設為自定義資料集的類別數。
+    
+## Other needed .py
+1. helper.py：讀取並分割資料集/訓練模型的步驟/計算模型的準確率。
+2. flops.py：計算運算浮點數。
 
 ## Data Training Detail
 - 讀取train.csv/test.csv：將訓練集分割成，訓練資料(9):驗證資料(1)。
