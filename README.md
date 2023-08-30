@@ -27,7 +27,7 @@ The github form : [Github - WZMIAOMIAO] [2]
 - 更改參數:
     - img_path :預測照片存放的路徑。
     - modelName :訓練好的權重檔路徑。
-    - (line14)呼叫模型時，
+    - (line43)呼叫模型時，
         - 不用凍結網路層(freeze_layers=False)。
         - num_classes設為自定義資料集的類別數。
 
