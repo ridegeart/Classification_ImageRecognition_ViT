@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 
 
 def read_split_data(root: str, val_rate: float = 0.2):
+    """讀取並分割資料集"""
     random.seed(0)  # 保证随机结果可复现
     assert os.path.exists(root), "dataset root: {} does not exist.".format(root)
 
@@ -116,6 +117,7 @@ def read_pickle(file_name: str) -> list:
 
 
 def train_one_epoch(model, optimizer, data_loader, device, epoch):
+    """訓練模型的步驟"""
     model.train()
     loss_function = torch.nn.CrossEntropyLoss()
     accu_loss = torch.zeros(1).to(device)  # 累计损失
@@ -152,6 +154,7 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch):
 
 @torch.no_grad()
 def evaluate(model, data_loader, device, epoch):
+    """計算模型的準確率"""
     loss_function = torch.nn.CrossEntropyLoss()
 
     model.eval()

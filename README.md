@@ -3,7 +3,6 @@ Implementation of Vision Transformer in PyTorch based on paper [An Image is Wort
 The github form : [Github - WZMIAOMIAO] [2]
 
 ## setting
-- 資料夾:'./transformer/Deep_1'
 - 下載權重檔:[路徑]
 
 ## Data Prepared
@@ -11,31 +10,37 @@ The github form : [Github - WZMIAOMIAO] [2]
 - 預測集 (Detect)：所有照片全部放在一個資料夾內。
 
 ## Training 
-1. 使用train.py 進行訓練。
-2. 更改參數:
+1. train.py：進行訓練。
+- 更改參數:
     - --num_classes :更改自定義資料集的類別數。
     - --data-path 路徑:自己的訓練集路徑。
     - --weights 路徑:下載好的權重的存放位置。
 
 ## Predict (單張測試)
-1. 使用predict.py。
-2. 更改參數:
+1. predict.py。
+- 更改參數:
     - img_path :開啟照片檔案路徑。
     - model_weight_path :訓練好的權重檔路徑。
 
 ## Detect (多張預測)
-1. 使用detect.py 進行照片預測。
-2. 更改參數:
+1. detect.py：照片預測。
+- 更改參數:
     - img_path :預測照片存放的路徑。
     - modelName :訓練好的權重檔路徑。
     - (line14)呼叫模型時，
         - 不用凍結網路層(freeze_layers=False)。
         - num_classes設為自定義資料集的類別數。
 
+## Other needed .py
+1. my_dataset.py：自訂義數據集Loader。
+2. utils.py：讀取並分割資料集/訓練模型的步驟/計算模型的準確率。
+3. flops.py：計算運算浮點數。
+4. vit_model.py：Vision Transformer 的模型。
+
 ## Data Training Detail
 - read_split_data：自動將訓練集分割成，訓練資料(8):驗證資料(2)。
 - data_transform：自動將輸入圖片resize成224*224。
-- MyDataSet：自動生成class_indices(所有類別的dict)。
+- MyDataSet：自動生成class_indices.json(所有類別的dict)。
 - num_workers：輸入batch_size，讓電腦自動運算合適的數量。
 - create_model：Pretrained Weight 的帶入，
     1. 讀取權重(.pth檔)。
