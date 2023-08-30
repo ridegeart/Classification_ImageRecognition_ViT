@@ -15,7 +15,7 @@ The github form : [Github - WZMIAOMIAO] [2]
     dataPickle_Transform/preimages/train , dataPickle_Transform/preimage/test 的照片要放在 dataset/images。
     dataPickle_Transform/picklefiles/meta,train,test 要放在 dataset/pickle_files。  
     會產生一個pickleTotal.csv彙整表。
-2. process_dataset.py : 建立train.csv / test.csv。
+2. process_dataset.py : 建立train.csv / test.csv，將訓練集分割成，訓練資料(9):驗證資料(1)。
 3. level_dic.py : 建立 level_1 與 Level_2 與 level_3 階層字典。
 4. resize.py : 照片 resize (224*224)。
     - Traintype = True
@@ -44,7 +44,7 @@ The github form : [Github - WZMIAOMIAO] [2]
     - model_weight_path :訓練好的權重檔路徑。
 
 ## Detect Data Prepared
-1. 預測集 (Detect)：所有照片全部放在一個資料夾內。
+- 預測集 (Detect)：所有照片全部放在一個資料夾內。
 
 ## Detect (多張預測)
 1. detect.py：進行照片預測。
@@ -56,11 +56,12 @@ The github form : [Github - WZMIAOMIAO] [2]
         - num_classes設為自定義資料集的類別數。
     
 ## Other needed .py
-1. helper.py：讀取並分割資料集/訓練模型的步驟/計算模型的準確率。
+1. load_dataset.py：數據集的 data loader。
+1. utils.py：訓練模型的步驟/計算模型的準確率。
 2. flops.py：計算運算浮點數。
+3. hierarchical_loss.py：階層損失函數。
 
 ## Data Training Detail
-- 讀取train.csv/test.csv：將訓練集分割成，訓練資料(9):驗證資料(1)。
 - data_transform：自動將輸入圖片resize成224*224。
 - num_workers：輸入batch_size，讓電腦自動運算合適的數量。
 - create_model：Pretrained Weight 的帶入，
