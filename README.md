@@ -38,9 +38,10 @@ The github form : [Github - WZMIAOMIAO] [2]
 4. vit_model.py：Vision Transformer 的模型。
 
 ## Data Training Detail
-- read_split_data：自動將訓練集分割成，訓練資料(8):驗證資料(2)。
+- read_split_data：
+    - 自動將訓練集分割成，訓練資料(8):驗證資料(2)。
+    - 自動生成class_indices.json(所有類別的dict)。
 - data_transform：自動將輸入圖片resize成224*224。
-- MyDataSet：自動生成class_indices.json(所有類別的dict)。
 - num_workers：輸入batch_size，讓電腦自動運算合適的數量。
 - create_model：Pretrained Weight 的帶入，
     1. 讀取權重(.pth檔)。
